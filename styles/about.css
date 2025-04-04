@@ -1,0 +1,75 @@
+nav {
+    background-color: brown;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.home {
+    border: green;
+    background-color: blueviolet;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-top: 1px;
+}
+
+.about {
+    border: green;
+    background-color: cadetblue;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-top: 1px;
+
+}
+
+.follow {
+    border: green;
+    background-color: chocolate;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-top: 1px;
+}
+
+.jos {
+    color: black;
+    font-size: larger;
+}
+
+.josh {
+    color: black;
+    font-size: larger;
+}
+
+
+.jo {
+    color: blue;
+    ;
+}
+
+.ted {
+    color: black;
+    font-size: larger;
+}
+
+.tex {
+    color: black;
+    font-size: larger;
+}
+
+.text {
+    color: blue;
+}
+
+.num1 {
+    color: black;
+    font-size: larger;
+}
+
+.num2 {
+    color: black;
+    font-size: larger;
+}
+
+.num3 {
+    color: blue;
+}
