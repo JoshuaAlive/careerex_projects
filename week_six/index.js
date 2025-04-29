@@ -52,6 +52,12 @@ app.get("/drugs/antibiotics", (req, res) => {
  res.json({"antibiotics": antibiotics})
 })
 
+// Return an array of all drug names converted to lowercase.
+app.get("/drugs/names", (req, res) => {
+    const drugNamesLowercase = drugs.map(drug => drug.name.toLowerCase())
+    res.json({"lowercaseDrugs": drugNamesLowercase})
+})
+
 app.listen(PORT, () => {
     console.log("Listening to port", 3000)
 })
