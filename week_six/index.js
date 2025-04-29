@@ -58,6 +58,13 @@ app.get("/drugs/names", (req, res) => {
     res.json({"lowercaseDrugs": drugNamesLowercase})
 })
 
+// Accept a category in the body and return all drugs under that category.
+app.post("/drugs/by-category", (req, res) => {
+    const {category} = req.body
+    const drugsByCategory = drugs.filter(drug => drug.category === category)
+    res.json({"categorizedDrugs": drugsByCategory})
+})
+
 app.listen(PORT, () => {
     console.log("Listening to port", 3000)
 })
