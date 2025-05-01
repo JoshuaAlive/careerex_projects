@@ -84,6 +84,14 @@ app.get("/drugs/formatted", (req, res) => {
     const drugStrings = drugs.map(drug => `Drug: ${drug.name} - ${drug.dosageMg}mg`);
     res.json({drugStrings})
 })
+
+// Return all drugs where stock is less than 50.
+app.get("/drugs/low-stock", (req, res) => {
+    const drugLowStock = drugs.filter(drug => drug.stock < 50 )
+    res.json({drugLowStock})
+} )
+
+
 app.listen(PORT, () => {
     console.log("Listening to port", 3001)
 })
