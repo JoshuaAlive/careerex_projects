@@ -104,6 +104,11 @@ app.post(" /drugs/manufacturer-count", (req, res) => {
     res.json({ drugsByManufacturer})
 })
 
+// Count and return how many drugs have the category "Analgesic".
+app.get("/drugs/count-analgesics", (req, res) => {
+    const analgesicCount = drugs.filter(drug => drug.category === "Analgesic").length
+    res.json({ analgesicCount})
+})
 
 
 app.listen(PORT, () => {
