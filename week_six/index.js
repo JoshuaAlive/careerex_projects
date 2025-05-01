@@ -79,6 +79,12 @@ app.get("/drugs/prescription", (req, res) => {
     res.json({"pDrugs" : prescriptionDrugs})
 })
 
+// Return a new array where each item is a string like:
+app.get("/drugs/formatted", (req, res) => {
+    const drugStrings = drugs.map(drug => `Drug: ${drug.name} - ${drug.dosageMg}mg`);
+    res.json({drugStrings})
+})
 app.listen(PORT, () => {
     console.log("Listening to port", 3001)
 })
+
