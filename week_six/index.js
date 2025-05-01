@@ -112,6 +112,6 @@ app.get("/drugs/count-analgesics", (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log("Listening to port", 3001)
+    console.log("Listening to port", PORT)
 })
 
