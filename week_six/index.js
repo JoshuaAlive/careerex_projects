@@ -42,38 +42,42 @@ const drugs = [
 
 ];
 const express = require("express")
-const app = express() 
+const app = express()
 const PORT = 3001
 app.use(express.json())
 
 // Return all drugs where category is "Antibiotic".
 app.get("/drugs/antibiotics", (req, res) => {
- const antibiotics = drugs.filter(drug => drug.category === "Antibiotic")
- res.json({"antibiotics": antibiotics})
+    const antibiotics = drugs.filter(drug => drug.category === "Antibiotic")
+    res.json({ "antibiotics": antibiotics })
 })
 
 // Return an array of all drug names converted to lowercase.
 app.get("/drugs/names", (req, res) => {
     const drugNamesLowercase = drugs.map(drug => drug.name.toLowerCase())
-    res.json({"lowercaseDrugs": drugNamesLowercase})
+    res.json({ "lowercaseDrugs": drugNamesLowercase })
 })
 
 // Accept a category in the body and return all drugs under that category.
 app.post("/drugs/by-category", (req, res) => {
-    const {category} = req.body
+    const { category } = req.body
     const drugsByCategory = drugs.filter(drug => drug.category === category)
-    res.json({"categorizedDrugs": drugsByCategory})
+    res.json({ "categorizedDrugs": drugsByCategory })
 })
 
 // Return an array of objects showing each drug's name and manufacturer.
 app.get("/drugs/names-manufacturers", (req, res) => {
- const ans = drugs.map(drug => {
-   return {"name": drug.name, "manufacturer": drug.manufacturer}
- })
-  res.json({"result": ans})
+    const ans = drugs.map(drug => {
+        return { "name": drug.name, "manufacturer": drug.manufacturer }
+    })
+    res.json({ "result": ans })
 })
 
-
+// Return all drugs where isPrescriptionOnly is true.
+app.get("/drugs/prescription", (req, res) => {
+    const prescriptionDrugs = drugs.filter(drug => drug.isPrescriptionOnly === true)
+    res.json({"pDrugs" : prescriptionDrugs})
+})
 
 app.listen(PORT, () => {
     console.log("Listening to port", 3001)
