@@ -43,7 +43,7 @@ const drugs = [
 ];
 const express = require("express")
 const app = express() 
-const PORT = 3000
+const PORT = 3001
 app.use(express.json())
 
 // Return all drugs where category is "Antibiotic".
@@ -65,6 +65,16 @@ app.post("/drugs/by-category", (req, res) => {
     res.json({"categorizedDrugs": drugsByCategory})
 })
 
+// Return an array of objects showing each drug's name and manufacturer.
+app.get("/drugs/names-manufacturers", (req, res) => {
+ const ans = drugs.map(drug => {
+   return {"name": drug.name, "manufacturer": drug.manufacturer}
+ })
+  res.json({"result": ans})
+})
+
+
+
 app.listen(PORT, () => {
-    console.log("Listening to port", 3000)
+    console.log("Listening to port", 3001)
 })
