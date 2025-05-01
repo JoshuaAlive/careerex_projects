@@ -97,6 +97,14 @@ app.get("/drugs/non-prescription", (req, res) => {
     res.json({nonPrescriptionDrugs})
 })
 
+// Accept a manufacturer in the body and return how many drugs are produced by that manufacturer.
+app.post(" /drugs/manufacturer-count", (req, res) => {
+    const { manufacturer } = req.body
+    const drugsByManufacturer = drugs.filter(drug => drug.manufacturer === manufacturer).length
+    res.json({ drugsByManufacturer})
+})
+
+
 
 app.listen(PORT, () => {
     console.log("Listening to port", 3001)
