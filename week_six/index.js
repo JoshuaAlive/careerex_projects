@@ -91,6 +91,12 @@ app.get("/drugs/low-stock", (req, res) => {
     res.json({drugLowStock})
 } )
 
+// Return all drugs where isPrescriptionOnly is false.
+app.get("/drugs/non-prescription", (req, res) => {
+    const nonPrescriptionDrugs = drugs.filter(drug => drug.isPrescriptionOnly === true)
+    res.json({nonPrescriptionDrugs})
+})
+
 
 app.listen(PORT, () => {
     console.log("Listening to port", 3001)
