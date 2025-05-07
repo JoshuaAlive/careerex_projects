@@ -1,0 +1,12 @@
+{
+  "name": "careerex_projects",
+  "version": "1.0.0",
+  "description": "This contains submissions to CareerEX tasks  This currently contains assignment 1, 2 and 3 - Task Three was on JavaScript fundamentalss - Task Four was on Conditions, Loops, Objects, Functions, Arrow Functions - Task Five was on Array Methods - in scriptThree.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
