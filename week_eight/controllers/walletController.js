@@ -3,7 +3,7 @@ const Wallet = require("../models/wallet");
 const mongoose = require("mongoose")
 const getWallet = async (req, res) => {
     try {
-        const userId = req.user.userId; // Get user ID from the authenticated request
+        const userId = req.user.userId;
         console.log(req.user)
         // Find the wallet associated with the user
         const wallet = await Wallet.findOne({ user: userId });
@@ -27,6 +27,10 @@ const getWallet = async (req, res) => {
     }
 };
 
+
+/*
+    Money transfer logic between wallets - Number for Milestone 2 
+ */
 const makeTransfer = async (req, res) => {
     try {
         const { amount, recipientId } = req.body;
@@ -51,7 +55,7 @@ const makeTransfer = async (req, res) => {
             return res.status(404).json({ "error": "No wallet found for the user" });
         }
 
-        // Check if the sender has enough balance
+        // Check if the sender has enough balance - validation for number 2
         if (senderWallet.balance < usefulAmount) {
             return res.status(400).json({ "error": "Insufficient funds" });
         }
@@ -71,7 +75,7 @@ const makeTransfer = async (req, res) => {
         recipientWallet.balance += usefulAmount;
         await recipientWallet.save();
 
-
+        // Transaction logging
         const newTransaction = new Transaction({
             senderWallet,
             recipientWallet,
@@ -85,7 +89,7 @@ const makeTransfer = async (req, res) => {
         });
 
     } catch (error) {
-        console.error(error); // Log the error for debugging
+        console.error(error);
         return res.status(500).json({ "error": "Server error" });
     }
 };
