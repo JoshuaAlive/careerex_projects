@@ -108,4 +108,27 @@ const getTransactions = async (req, res) => {
     }
 }
 
-module.exports = { makeTransfer, getWallet, getTransactions }
+
+/*
+    Controller function for getting wallet balance
+*/
+const getWalletBalance = async (req, res) => {
+    try {
+        const userId = req.user.userId
+
+        const wallet = await Wallet.findOne({ user: userId });
+        if (!wallet) {
+            return res.status(404).json({ "error": "No wallet associated with the current user" });
+        }
+
+        return res.status(200).json({
+            "balance": wallet.balance,
+        })
+
+
+    } catch (error) {
+        return res.status(500).json({"error": error})
+    }
+}
+
+module.exports = { makeTransfer, getWallet, getTransactions, getWalletBalance }
