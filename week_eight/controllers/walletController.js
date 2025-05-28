@@ -50,7 +50,6 @@ const makeTransfer = async (req, res) => {
 
         // Find the sender's wallet
         const senderWallet = await Wallet.findOne({ user: userId });
-
         if (!senderWallet) {
             return res.status(404).json({ "error": "No wallet found for the user" });
         }
@@ -77,8 +76,8 @@ const makeTransfer = async (req, res) => {
 
         // Transaction logging
         const newTransaction = new Transaction({
-            senderWallet,
-            recipientWallet,
+            senderWallet: senderWallet._id,
+            recipientWallet: recipientWallet._id,
             amount,
         })
         await newTransaction.save()
@@ -94,14 +93,19 @@ const makeTransfer = async (req, res) => {
     }
 };
 
+/* Get past transactions on user transactions */
+
 const getTransactions = async (req, res) => {
     try {
         const senderId = new mongoose.Types.ObjectId(req.user.userId)
-        const transactions = await Transaction.findOne({ senderWallet: senderId })
+        const wallet = await Wallet.findOne({user: senderId})
+
+        console.log(senderId)
+        const transactions = await Transaction.findOne({ senderWallet: wallet._id })
         if (!transactions) {
-            res.status(404).json({ "messages": "User hasn't performed any transactions" })
+            return res.status(404).json({ "messages": "User hasn't performed any transactions" })
         }
-        res.status(200).json({transactions})
+        return res.status(200).json({transactions})
     } catch (e) {
         console.error(e);
         return res.status(500).json({ "error": "Server error" });
